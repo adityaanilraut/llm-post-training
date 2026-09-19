@@ -1,0 +1,6 @@
+# LoRA adapter hyperparams for mlx_lm.lora (new CLI has no --rank flag;
+# rank/scale/dropout live here and are passed via train.sh -c).
+lora_parameters:
+  rank: 16
+  scale: 20.0
+  dropout: 0.05

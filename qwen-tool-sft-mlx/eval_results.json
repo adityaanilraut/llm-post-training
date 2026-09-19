@@ -1,0 +1,241 @@
+{
+  "summary": [
+    {
+      "model": "base",
+      "score": 0.688,
+      "name_acc": 0.75,
+      "valid": 0.625
+    },
+    {
+      "model": "lora",
+      "score": 1.0,
+      "name_acc": 1.0,
+      "valid": 0.625
+    }
+  ],
+  "details": {
+    "base": [
+      {
+        "id": "weather_sf",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "San Francisco",
+            "unit": "fahrenheit"
+          }
+        },
+        "latency": 0.56,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"San Francisco\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "weather_tokyo",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Tokyo",
+            "unit": "fahrenheit"
+          }
+        },
+        "latency": 0.53,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Tokyo\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "128 * 6"
+          }
+        },
+        "latency": 0.46,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"128 * 6\"}}\n</tool_call>"
+      },
+      {
+        "id": "calc_paren",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 0.0,
+        "score": 0.5,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "14 + 6 * 3"
+          }
+        },
+        "latency": 0.5,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"14 + 6 * 3\"}}\n</tool_call>"
+      },
+      {
+        "id": "pick_tool",
+        "valid": true,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "New York",
+            "unit": "fahrenheit"
+          }
+        },
+        "latency": 0.52,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"New York\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "latency": 0.6,
+        "output": "The first person to walk on the moon was Neil Armstrong, an American astronaut. He famously said, \"That's one small step for man, one giant leap for mankind.\""
+      },
+      {
+        "id": "clarify",
+        "valid": false,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "New York",
+            "unit": "fahrenheit"
+          }
+        },
+        "latency": 0.5,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"New York\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "chit_chat",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "latency": 0.4,
+        "output": "Hello! I'm just a virtual assistant here. How can I assist you today?"
+      }
+    ],
+    "lora": [
+      {
+        "id": "weather_sf",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "San Francisco"
+          }
+        },
+        "latency": 0.48,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"San Francisco\"}}\n</tool_call>"
+      },
+      {
+        "id": "weather_tokyo",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Tokyo"
+          }
+        },
+        "latency": 0.51,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Tokyo\"}}\n</tool_call>"
+      },
+      {
+        "id": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "128 * 6"
+          }
+        },
+        "latency": 0.52,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"128 * 6\"}}\n</tool_call>"
+      },
+      {
+        "id": "calc_paren",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "(14 + 6) * 3"
+          }
+        },
+        "latency": 0.59,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"(14 + 6) * 3\"}}\n</tool_call>"
+      },
+      {
+        "id": "pick_tool",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "81 / 9"
+          }
+        },
+        "latency": 0.52,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"81 / 9\"}}\n</tool_call>"
+      },
+      {
+        "id": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "latency": 0.38,
+        "output": "Neil Armstrong \u2014 Apollo 11, 1969."
+      },
+      {
+        "id": "clarify",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "latency": 0.3,
+        "output": "Which city should I look up?"
+      },
+      {
+        "id": "chit_chat",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "latency": 0.36,
+        "output": "Doing well, thanks. How can I help?"
+      }
+    ]
+  }
+}

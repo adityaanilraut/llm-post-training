@@ -1,0 +1,723 @@
+{
+  "summary": [
+    {
+      "model": "base",
+      "score": 0.682,
+      "name_acc": 0.727,
+      "valid": 0.591,
+      "by_cat": {
+        "calc": 0.667,
+        "clarify": 0.25,
+        "no_tool": 0.75,
+        "pick": 1.0,
+        "tricky": 1.0,
+        "weather": 0.75
+      }
+    },
+    {
+      "model": "lora",
+      "score": 0.864,
+      "name_acc": 0.955,
+      "valid": 0.591,
+      "by_cat": {
+        "calc": 1.0,
+        "clarify": 1.0,
+        "no_tool": 1.0,
+        "pick": 1.0,
+        "tricky": 0.5,
+        "weather": 0.5
+      }
+    }
+  ],
+  "details": {
+    "base": [
+      {
+        "id": "w_unseen_reykjavik",
+        "cat": "weather",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Reykjavik",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "ok",
+        "latency": 0.59,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Reykjavik\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "w_unseen_lima_short",
+        "cat": "weather",
+        "valid": false,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": null,
+        "note": "no_parse",
+        "latency": 0.46,
+        "output": "Sure, I can help with that. Could you please tell me the name of the city you're interested in?"
+      },
+      {
+        "id": "w_unseen_fahrenheit",
+        "cat": "weather",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Zurich",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "ok",
+        "latency": 0.5,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Zurich\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "w_unseen_athens",
+        "cat": "weather",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Athens",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "ok",
+        "latency": 0.51,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Athens\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_simple",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "47 * 13"
+          }
+        },
+        "note": "ok",
+        "latency": 0.44,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"47 * 13\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_word_div",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "New York",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "ok",
+        "latency": 0.51,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"New York\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_word_mult",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "45 * 12"
+          }
+        },
+        "note": "ok",
+        "latency": 0.47,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"45 * 12\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_paren_new",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 0.0,
+        "score": 0.5,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "23 + 17 * 4"
+          }
+        },
+        "note": "ok",
+        "latency": 0.5,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"23 + 17 * 4\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_paren_div",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 0.0,
+        "score": 0.5,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "100 - 37 / 9"
+          }
+        },
+        "note": "ok",
+        "latency": 0.49,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"100 - 37 / 9\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_decimal",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "7.5 * 4"
+          }
+        },
+        "note": "ok",
+        "latency": 0.44,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"7.5 * 4\"}}\n</tool_call>"
+      },
+      {
+        "id": "p_calc",
+        "cat": "pick",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "15 + 27"
+          }
+        },
+        "note": "ok",
+        "latency": 0.47,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"15 + 27\"}}\n</tool_call>"
+      },
+      {
+        "id": "p_weather_unseen",
+        "cat": "pick",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Singapore",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "ok",
+        "latency": 0.5,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Singapore\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "n_trivia_orwell",
+        "cat": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "no_call_ok",
+        "latency": 0.88,
+        "output": "I don't have the capability to provide information about specific books or authors. I can only assist with general knowledge and information about various topics. If you have a specific question about 1984 or any other book, I'd be happy to try to help you with that."
+      },
+      {
+        "id": "n_trivia_italy",
+        "cat": "no_tool",
+        "valid": false,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Rome",
+            "unit": "celsius"
+          }
+        },
+        "note": "should_not_call",
+        "latency": 0.49,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Rome\", \"unit\": \"celsius\"}}\n</tool_call>"
+      },
+      {
+        "id": "n_chat_evening",
+        "cat": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "no_call_ok",
+        "latency": 0.29,
+        "output": "Hello! How can I assist you tonight?"
+      },
+      {
+        "id": "n_thanks",
+        "cat": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "no_call_ok",
+        "latency": 0.42,
+        "output": "You're welcome! If you have any other questions or need further assistance, feel free to ask."
+      },
+      {
+        "id": "q_weather_bare",
+        "cat": "clarify",
+        "valid": false,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "New York",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "should_not_call",
+        "latency": 0.5,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"New York\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "q_temp",
+        "cat": "clarify",
+        "valid": false,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": null,
+        "note": "clarify_city",
+        "latency": 0.44,
+        "output": "Sure, I can help with that. Could you please tell me the name of the city you're interested in?"
+      },
+      {
+        "id": "q_math",
+        "cat": "clarify",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "clarify_expr",
+        "latency": 0.41,
+        "output": "Of course! Could you please provide me with the arithmetic expression you would like me to evaluate?"
+      },
+      {
+        "id": "q_raining_nocity",
+        "cat": "clarify",
+        "valid": false,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Shanghai",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "should_not_call",
+        "latency": 0.49,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Shanghai\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "t_raining_paris",
+        "cat": "tricky",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Paris",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "ok",
+        "latency": 0.48,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Paris\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "t_helsinki_nounit",
+        "cat": "tricky",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Helsinki",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "unit_hallucinated",
+        "latency": 0.5,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Helsinki\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      }
+    ],
+    "lora": [
+      {
+        "id": "w_unseen_reykjavik",
+        "cat": "weather",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 0.0,
+        "score": 0.5,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": " Reykur",
+            "unit": "celsius"
+          }
+        },
+        "note": "ok",
+        "latency": 0.62,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \" Reykur\", \"unit\": \"celsius\"}}\n</tool_call>"
+      },
+      {
+        "id": "w_unseen_lima_short",
+        "cat": "weather",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 0.0,
+        "score": 0.5,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Lisbon"
+          }
+        },
+        "note": "ok",
+        "latency": 0.55,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Lisbon\"}}\n</tool_call>"
+      },
+      {
+        "id": "w_unseen_fahrenheit",
+        "cat": "weather",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 0.5,
+        "score": 0.5,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Zuriner",
+            "unit": "fahrenheit"
+          }
+        },
+        "note": "ok",
+        "latency": 0.6,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Zuriner\", \"unit\": \"fahrenheit\"}}\n</tool_call>"
+      },
+      {
+        "id": "w_unseen_athens",
+        "cat": "weather",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 0.0,
+        "score": 0.5,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Athristry"
+          }
+        },
+        "note": "ok",
+        "latency": 0.52,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Athristry\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_simple",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "47 * 13"
+          }
+        },
+        "note": "ok",
+        "latency": 0.52,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"47 * 13\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_word_div",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "144 / 12"
+          }
+        },
+        "note": "ok",
+        "latency": 0.56,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"144 / 12\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_word_mult",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "45 * 12"
+          }
+        },
+        "note": "ok",
+        "latency": 0.55,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"45 * 12\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_paren_new",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "(23 + 17) * 4"
+          }
+        },
+        "note": "ok",
+        "latency": 0.6,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"(23 + 17) * 4\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_paren_div",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "(100 - 37) / 9"
+          }
+        },
+        "note": "ok",
+        "latency": 0.59,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"(100 - 37) / 9\"}}\n</tool_call>"
+      },
+      {
+        "id": "c_decimal",
+        "cat": "calc",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "7.5 * 4"
+          }
+        },
+        "note": "ok",
+        "latency": 0.52,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"7.5 * 4\"}}\n</tool_call>"
+      },
+      {
+        "id": "p_calc",
+        "cat": "pick",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "calculator",
+          "arguments": {
+            "expression": "15 + 27"
+          }
+        },
+        "note": "ok",
+        "latency": 0.55,
+        "output": "<tool_call>\n{\"name\": \"calculator\", \"arguments\": {\"expression\": \"15 + 27\"}}\n</tool_call>"
+      },
+      {
+        "id": "p_weather_unseen",
+        "cat": "pick",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Singapore"
+          }
+        },
+        "note": "ok",
+        "latency": 0.52,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Singapore\"}}\n</tool_call>"
+      },
+      {
+        "id": "n_trivia_orwell",
+        "cat": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "no_call_ok",
+        "latency": 0.31,
+        "output": "Leonardo da Vinci."
+      },
+      {
+        "id": "n_trivia_italy",
+        "cat": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "no_call_ok",
+        "latency": 0.21,
+        "output": "Rome."
+      },
+      {
+        "id": "n_chat_evening",
+        "cat": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "no_call_ok",
+        "latency": 0.34,
+        "output": "Good evening! How can I help today?"
+      },
+      {
+        "id": "n_thanks",
+        "cat": "no_tool",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "no_call_ok",
+        "latency": 0.28,
+        "output": "You're welcome!"
+      },
+      {
+        "id": "q_weather_bare",
+        "cat": "clarify",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "clarify_city",
+        "latency": 0.3,
+        "output": "Which city should I look up?"
+      },
+      {
+        "id": "q_temp",
+        "cat": "clarify",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "clarify_city",
+        "latency": 0.25,
+        "output": "Sure \u2014 which city?"
+      },
+      {
+        "id": "q_math",
+        "cat": "clarify",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "clarify_expr",
+        "latency": 0.29,
+        "output": "What expression should I evaluate?"
+      },
+      {
+        "id": "q_raining_nocity",
+        "cat": "clarify",
+        "valid": false,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": null,
+        "note": "clarify_city",
+        "latency": 0.3,
+        "output": "Where \u2014 which city should I check?"
+      },
+      {
+        "id": "t_raining_paris",
+        "cat": "tricky",
+        "valid": false,
+        "name_ok": false,
+        "fuzzy": 0.0,
+        "score": 0.0,
+        "parsed": null,
+        "note": "no_parse",
+        "latency": 0.3,
+        "output": "Where \u2014 which city should I check?"
+      },
+      {
+        "id": "t_helsinki_nounit",
+        "cat": "tricky",
+        "valid": true,
+        "name_ok": true,
+        "fuzzy": 1.0,
+        "score": 1.0,
+        "parsed": {
+          "name": "get_weather",
+          "arguments": {
+            "city": "Helsinki"
+          }
+        },
+        "note": "ok",
+        "latency": 0.48,
+        "output": "<tool_call>\n{\"name\": \"get_weather\", \"arguments\": {\"city\": \"Helsinki\"}}\n</tool_call>"
+      }
+    ]
+  }
+}
